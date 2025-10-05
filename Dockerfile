@@ -32,3 +32,31 @@ RUN mkdir -p /var/www/html/database && \
 
 # Jalankan migrate saat container start
 CMD php artisan migrate --force && php-fpm
+
+# FROM composer:2 AS vendor
+
+# WORKDIR /app
+# COPY . .
+# RUN composer install --no-dev --optimize-autoloader
+
+# FROM php:8.3-fpm-alpine
+
+# RUN apk add --no-cache \
+#     bash git curl zip unzip sqlite libpng-dev oniguruma-dev libxml2-dev libzip-dev sqlite-dev \
+#     && docker-php-ext-install pdo pdo_sqlite mbstring exif pcntl bcmath gd zip
+
+# WORKDIR /var/www/html
+
+# COPY . .
+# COPY --from=vendor /app/vendor ./vendor
+
+# RUN mkdir -p database && touch database/database.sqlite \
+#     && chown -R www-data:www-data storage bootstrap/cache database
+
+# RUN if ! grep -q "APP_KEY=" .env; then \
+#     cp .env.example .env && php artisan key:generate; \
+#     fi
+
+# EXPOSE 8000
+
+# CMD php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8000
