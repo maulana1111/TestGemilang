@@ -48,7 +48,7 @@
         <button type="submit" class="btn btn-primary">
             {{ isset($product) ? 'Update' : 'Simpan' }}
         </button>
-        <a href="{{ url('/products') }}" class="btn btn-secondary">Batal</a>
+        <a href="{{ url('/') }}" class="btn btn-secondary">Batal</a>
     </form>
 </div>
 @endsection
